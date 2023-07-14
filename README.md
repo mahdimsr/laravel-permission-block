@@ -15,23 +15,14 @@ $user->blockedPermissions // all permissions are blocked for user
 $user->blockFromPermission('edit articles');
 $user->blockFromPermission(['edit articles','view post']);
 
-$user->hasBlockFromPermission('edit articles');
+$user->hasBlockFromPermission('edit articles'); // return true
+$user->hasDirectPermission('edit articles'); // return false
+$user->hasPermissionTo('edit articles'); // return false
+$user->can('edit articles'); // return false
 
 $user->hasBlockFromAnyPermission(['edit article','view post']) // return true if any of passing permissions array are blocked
 
 $user->unblockFromPermission('view post')
-```
-
-in main repo all permissions will be registered on [Laravel's gate](https://laravel.com/docs/authorization), you can check if a user has a permission with Laravel's default `can` function, but it not checking the blocked permissions.
-we will handle it in next releases.
-
-```php
-
-$user->blockFromPermission('edit articles');
-
-$user->hasBlockFromPermission('edit articles'); // return true
-
-$user->can('edit articles'); // return true: it not check blocked permissions
 ```
 
 ## Changelog
